@@ -6,9 +6,9 @@ This was created to fill the void left by the removal of the save/load session, 
 Feel free to use/extend/modify. PR fixes welcome.
 
 ### sessions
- save data is broken into session files, which contain checkpoints and a rolling autosave 
-   > each checkpoint contains the prompt, response, parameters, and model settings 
-	 autosaves contain the current state of the input and output text boxes
+ save data is broken into session files, which contain checkpoints and a rolling autosave  
+> each checkpoint contains the prompt, response, parameters, and model settings 
+> autosaves contain the current state of the input and output text boxes
 	 
 session files can then have their checkpoint data and parameters loaded manually or automatically
 
