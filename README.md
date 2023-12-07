@@ -8,7 +8,7 @@ Feel free to use/extend/modify. PR fixes welcome.
 ### sessions
  save data is broken into session files, which contain checkpoints and a rolling autosave  
 
-> each checkpoint contains the prompt, response, parameters, and model settings 
+> checkpoints contain the prompt, response, parameters, and model settings 
 
 > autosaves contain the current state of the input and output text boxes
 
