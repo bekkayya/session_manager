@@ -5,6 +5,7 @@ This was created to fill the void left by the removal of ooba's save/load sessio
 ![picture of a user interface with toggles, sliders, and buttons](https://github.com/bekkayya/session_manager/blob/main/menus_preview.png)
 
 (its clunky in parts mostly because I'm unfamiliar with gradio)
+
 Feel free to use/extend/modify. PR fixes welcome.
 
 ### sessions
