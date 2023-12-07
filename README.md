@@ -2,11 +2,10 @@
 
 This was created to fill the void left by the removal of ooba's save/load session, expanded/forked/derived from the Autosave extension with features and options I personally find useful.
 
-![picture of a user interface with toggles, sliders, and buttons](https://github.com/bekkayya/session_manager/blob/main/menus_preview.png)
-
 (its clunky in parts mostly because I'm unfamiliar with gradio)
-
 Feel free to use/extend/modify. PR fixes welcome.
+
+![picture of a user interface with toggles, sliders, and buttons](https://github.com/bekkayya/session_manager/blob/main/menus_preview.png)
 
 ### sessions
  save data is broken into session files, which contain checkpoints and a rolling autosave  
