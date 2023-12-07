@@ -7,16 +7,18 @@ Feel free to use/extend/modify. PR fixes welcome.
 
 ### sessions
  save data is broken into session files, which contain checkpoints and a rolling autosave 
-
-		each checkpoint contains the prompt, response, parameters, and model settings 
-		autosaves contain the current state of the input and output text boxes
+   > each checkpoint contains the prompt, response, parameters, and model settings 
+	 autosaves contain the current state of the input and output text boxes
+	 
 session files can then have their checkpoint data and parameters loaded manually or automatically
 
 ### features:
-- save on stop - starting and stopping generation creates a checkpoint (forked feature from AutoSave)
-- auto save - updates the rolling autosave with new data every x seconds
-- auto load session - auto loads the last selected, or newest, session when the server finishes booting
-- file management - create, select, rename, and delete sessions from the ui
+- optional:
+  -  save on stop - starting and stopping generation creates a checkpoint (forked feature from AutoSave)
+  - auto save - updates the rolling autosave with new data every x seconds
+  - auto load - auto loads the last selected, or newest, session when the server finishes booting
+  - auto session: creates a new session whenever a change to the prompt is made
+- file management - create, select, rename, and delete, sessions and checkpoints from the ui
 - json preview - expandable preview to see the selected checkpoint's raw json
 - custom save location config - output_path in settings.json can be used to overwrite the default save location
 - futureproofish - settings are collected from the internal ooba functions, so new settings and sliders should be automatically saved. 
@@ -24,7 +26,7 @@ session files can then have their checkpoint data and parameters loaded manually
 ### feature todo:
 - save string customization
 - chat & notebook functionality
-- capture cli output, params preset
+- capture cli output, parameters preset
 
 ### known issues:
 - model parameters are saved but cant be loaded due to I cant figure it out, feature is currently disabled
