@@ -21,7 +21,7 @@ session files can then have their checkpoint data and parameters loaded manually
 - optional:
   - save on stop - starting and stopping generation creates a checkpoint (forked feature from AutoSave)
   - auto save - updates the rolling autosave with new data every x seconds
-  - auto load - auto loads the last selected, or newest, session when the server finishes booting
+  - auto load - auto loads the last selected, or newest, session when the ooba first loads
   - auto session: creates a new session whenever a change to the prompt is made
 - file management - create, select, rename, and delete, sessions and checkpoints from the ui
 - json preview - expandable preview to see the selected checkpoint's raw json
