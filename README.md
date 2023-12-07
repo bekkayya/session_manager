@@ -1,31 +1,40 @@
-# AutoSave
-![image](https://github.com/ill13/AutoSave/assets/10509740/3577e6bc-1ca4-4699-977c-bd8b75ec7176)
+what this is:
+    created to fill the void left by the removal of the save/load session menu from ooga
+    expanded/forked/derived from the Autosave extension
+    with features and options I personally find useful
 
+    save data is broken into sessions, which contain checkpoints and a rolling autosave
+        each checkpoint contains the prompt, response, and parameters, and model settings
+        autosaves contain the current state of the input and output textboxes
 
-An auto save extension for text generated with the oobabooga WebUI.
+    saved session checkpoints and its parameters can then be loaded manually or automatically
 
-If you've ever lost a great response or forgot to copy and save your perfect prompt, **AutoSave** is for you!
+    The code is clunky in parts mostly because I'm unfamiliar with gradio. 
+    Feel free to use/extend/modify. PR fixes welcome.
 
-- 100% offline
-- Saves every prompt and every response to the host
-- Creates a new log file for every day
-- Appends the prompt and response to the log file as JSON
-- Logs are located in *PATH_TO_text-generation-webui/extensions/AutoSave/output/*
+features:
+    save on stop - starting and stopping generation creates a checkpoint
+    auto save - updates the rolling autosave with new data every x seconds
+    auto load session - auto loads the last selected, or newest, session when the server finishes booting
+    file management - create, select, rename, and delete sessions from the ui
+    json preview - expandable preview to see the selected checkpoint's raw json
+    custom save location config - output_path in settings.json can be used to overwrite the default save location
+    futureproofish - settings are collected from the internal ooba functions, so new settings and sliders should be automatically saved. 
 
-### How to use:
+feature todo:
+    save string customization
+    chat & notebook functionality
+    capture cli output, selected params preset
 
-Fire up a command prompt | shell:
+known issues:
+    model paramters are saved but cant be loaded due to I cant figure it out, feature is currently disabled
+    sometimes gradio dropdowns have a different entry ticked than selected
+        manual solution: select something else and return to make the json reader update
+    currently only designed for the default page, notebook might work somewhat, chat probably not at all
+    autosaving and manual checkpointing bump into undefined gradio behavior and can lag behind by several tokens
+    checkpointing at the very start before any generation often captures nothing, not much to be done about that
+    
+    
+    #autoloading fights with the presets menu since they both try to do the same thing when ooba calls ui setup
+    #    manual solution: waiting to change tabs until everything is completely loaded seems to help and/or manually press load
 
-```cd PATH_TO_text-generation-webui/extensions```
-
-Now clone this repo:
-
-```git clone https://github.com/ill13/AutoSave```
-
-Finally enable the extension in the *Session* tab
-
-![image](https://github.com/ill13/AutoSave/assets/10509740/92a131fc-7f65-4c62-94e8-85393b859714)
-
-### Future:
-
-I may add the generation properties [*model, seed, settings*] at a later point. 
