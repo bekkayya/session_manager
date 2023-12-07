@@ -1,6 +1,6 @@
 # Session Manager
 
-This was created to fill the void left by the removal of the save/load session, expanded/forked/derived from the Autosave extension with features and options I personally find useful.
+This was created to fill the void left by the removal of ooba's save/load session, expanded/forked/derived from the Autosave extension with features and options I personally find useful.
 
 (its clunky in parts mostly because I'm unfamiliar with gradio)
 Feel free to use/extend/modify. PR fixes welcome.
@@ -16,7 +16,7 @@ session files can then have their checkpoint data and parameters loaded manually
 
 ### features:
 - optional:
-  -  save on stop - starting and stopping generation creates a checkpoint (forked feature from AutoSave)
+  - save on stop - starting and stopping generation creates a checkpoint (forked feature from AutoSave)
   - auto save - updates the rolling autosave with new data every x seconds
   - auto load - auto loads the last selected, or newest, session when the server finishes booting
   - auto session: creates a new session whenever a change to the prompt is made
