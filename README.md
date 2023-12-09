@@ -2,8 +2,6 @@
 
 This was created to fill the void left by the removal of ooba's save/load session, expanded/forked/derived from the Autosave extension with features and options I personally find useful.
 
-(its clunky in parts mostly because I'm unfamiliar with gradio)
-
 Feel free to use/extend/modify. PR fixes welcome.
 
 ![picture of a user interface with toggles, sliders, and buttons](https://github.com/bekkayya/session_manager/blob/main/menus_preview.png)
@@ -38,7 +36,8 @@ session files can then have their checkpoint data and parameters loaded manually
 - sometimes gradio dropdowns have a different entry ticked than selected 
   - manual solution: select something else and return to force an update
 - currently only designed for the default page, notebook might work somewhat, chat probably not at all
-- autosaving and manual checkpointing bump into undefined gradio behavior and can lag behind by several tokens
+- ui refresh code is clunky in parts mostly because I'm unfamiliar with gradio
+- autosaving and manual checkpointing can lag behind by several tokens
 - checkpointing at the very start before any generation often captures nothing, not much to be done about that
 
 
