@@ -2,7 +2,7 @@ import json, uuid, time, re, os, threading
 from datetime import datetime
 from pathlib import Path
 
-#ooga specific imports
+#ooba specific imports
 import gradio as gr
 from modules import (
     chat,
@@ -155,8 +155,6 @@ def extract_datetime(filename):
         return datetime.strptime(filename.split('_')[0], stamp_format)
     except: #ValueError:
         return datetime.min
-    
-    return
 
 def get_available_sessions():
     return sorted(set((k.stem for k in glob["output_path"].glob('*.json'))), key=extract_datetime, reverse=False)
@@ -244,7 +242,7 @@ def rename_session(new_session_name):
     new_path = session_path(new_session_name)
 
     if not file_path.exists():
-        return None
+        return
 
     try:
         os.rename(file_path, new_path)
@@ -257,7 +255,6 @@ def rename_session(new_session_name):
     glob['session_name'] = new_session_name
     return new_session_name
 
-#todo: make these more robust by returning None when structure is malformed
 def read_session(session_name):
     global gui
     global glob
@@ -328,7 +325,7 @@ def load_checkpoint(session_name, checkpoint_name, state):
         gr.Info("Restoring Autosave...")
     else:
         checkpoint_data = read_checkpoint_data(session_name, checkpoint_name)
-        gr.Info("Restoring Session...")
+        gr.Info("Restoring Checkpoint...")
 
     if not checkpoint_data:
         return
@@ -346,9 +343,6 @@ def load_checkpoint(session_name, checkpoint_name, state):
             generate_params['textbox-default'] = checkpoint_data['prompt']
         if 'textbox-notebook' in generate_params:
             generate_params['textbox-notebook'] = checkpoint_data['prompt']
-        #if 'output_textbox' in generate_params:
-            #todo: causes prompt to double every time
-            #output_textbox += checkpoint_data['prompt']
 
         glob['default_last'] = checkpoint_data['prompt']
         glob['notebook_last'] = checkpoint_data['prompt']
@@ -359,7 +353,6 @@ def load_checkpoint(session_name, checkpoint_name, state):
         output_output += checkpoint_data['reply']
         #glob['reply'] = checkpoint_data['reply']
 
-    
     if output_output or output_input:
         if not output_output and 'output_textbox' in checkpoint_data:
             output_output = checkpoint_data['output_textbox']
@@ -505,7 +498,7 @@ def new_session(string=""):
         dirty_name = f"{stamp()}_{shorter_string}({counter})"
         counter += 1
 
-    clean_name = re.sub(illegal_chars, '_', dirty_name) #.replace('\n', '_')
+    clean_name = re.sub(illegal_chars, '_', dirty_name) 
     new_name = clean_name + filler
     glob['session_name'] = new_name
 
@@ -613,12 +606,9 @@ def fu_unsets_your_pre(prompt_preset_dropdown):
     if glob['unpreset_hold']:
         glob['unpreset_hold'] = False
         return None
-    
-    #if prompt_preset_dropdown != None and shared.persistent_interface_state['prompt_menu-default'] != None:
-    #    return None
 
     time.sleep(1) #no getting around this
-    
+
     args = {'value': glob['prompt']}
     for k, v in args.items():
         setattr(shared.gradio['textbox-default'], k, v)
@@ -633,19 +623,15 @@ def fu_dont_unset():
 def bu_session_params(session_name):
     global params
     params['default_session'] = session_name
-    return 1
 
 def bu_checkpoint_params(checkpoint_name):
     global params
     params['default_checkpoint'] = checkpoint_name
-    return 1
 
 #todo: update dropdowns when the new button is pressed. checkpoints also
 def ui():
     global glob
     global gui
-
-    #glob['unpreset_hold'] = False
 
     #setup defaults 
     info = "" #f"Last Saved: {glob['last_save']} \\n Current Session: {glob['session_name']}"
@@ -785,5 +771,4 @@ def setup():
         print(f"{params['name']}: output path {params['output_path']}")
 
 #todo: maybe break up this huge file into multiples, ui, filesaving, etc
-#save on emergency exit?
-#todo: make everything support chat, default, notebook
+#hook to emergency save on sigkill exit
